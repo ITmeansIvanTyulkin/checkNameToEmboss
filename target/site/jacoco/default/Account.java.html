@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ru"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Account.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Praktikum</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">Account.java</span></div><h1>Account.java</h1><pre class="source lang-java linenums">import org.apache.commons.lang3.StringUtils;
+
+public class Account {
+
+    private final String name;
+
+<span class="nc" id="L7">    public Account(String name) {</span>
+<span class="nc" id="L8">        this.name = name;</span>
+<span class="nc" id="L9">    }</span>
+
+    public boolean checkNameToEmboss(String name) {
+<span class="nc bnc" id="L12" title="All 2 branches missed.">        if (name.isEmpty()) {</span>
+<span class="nc" id="L13">            System.out.println(&quot;Передана пустая строка.&quot;);</span>
+<span class="nc" id="L14">            return false;</span>
+<span class="nc bnc" id="L15" title="All 2 branches missed.">        } else if (name.isBlank()) {</span>
+<span class="nc" id="L16">            System.out.println(&quot;Вместо имени переданы символы пробела.&quot;);</span>
+<span class="nc" id="L17">            return false;</span>
+<span class="nc bnc" id="L18" title="All 4 branches missed.">        } else if ((name.startsWith(&quot; &quot;)) || (name.endsWith(&quot; &quot;))) {</span>
+<span class="nc" id="L19">            System.out.println(&quot;Переданное имя и фамилия содержат пробел в начале или в конце.&quot;);</span>
+<span class="nc" id="L20">            return false;</span>
+<span class="nc bnc" id="L21" title="All 4 branches missed.">        } else if (!((name.startsWith(&quot; &quot;)) &amp;&amp; (!name.endsWith(&quot; &quot;)))) {</span>
+<span class="nc bnc" id="L22" title="All 2 branches missed.">            for (int i = 0; i &lt; name.length(); i++) {</span>
+<span class="nc bnc" id="L23" title="All 6 branches missed.">                if ((Character.isWhitespace(name.charAt(i))) &amp;&amp; ((name.length() &gt;= 3 &amp;&amp; name.length() &lt;= 19))) {</span>
+<span class="nc" id="L24">                    System.out.println(&quot;Переданное имя и фамилия соответствуют корректной длине и разделены пробелом.&quot;);</span>
+<span class="nc" id="L25">                    return true;</span>
+<span class="nc bnc" id="L26" title="All 2 branches missed.">                } else if (!name.contains(&quot; &quot;)) {</span>
+<span class="nc" id="L27">                    System.out.println(&quot;Пробелов нет вообще.&quot;);</span>
+<span class="nc" id="L28">                    return false;</span>
+                }
+            }
+        }
+<span class="nc" id="L32">        return false;</span>
+    }
+}
+
+/*
+Между 22 и 23 строками можно поместить код, представленный ниже. В этом случае если передано имя типа А И, код уберёт пробел между буквами и получтся 2
+символа, что не соответствует заданию и выведется сообщение. Случай, когда символов больше 19 не реализован. Также случай, когда в передеанном имени или
+фамилии есть ещё пробелы, например, Ива н Ива н о в - также не реализован.
+
+                    StringUtils.deleteWhitespace(name);
+                    if (name.length() &lt;= 3) {
+                        System.out.println(&quot;Переданное имя и фамилия НЕ соответствуют корректной длине.&quot;);
+                        return false;
+                    } else if (name.length() &gt;= 19)
+ */
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
